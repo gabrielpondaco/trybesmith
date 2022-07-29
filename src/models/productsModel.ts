@@ -10,6 +10,11 @@ const productsModel = {
     VALUES(?, ?);`, [name, amount]);
     return insertId;
   },
+
+  async getAll() {
+    const [productsList] = await connection.execute('SELECT * FROM Trybesmith.Products');
+    return productsList;
+  },
 };
 
 export default productsModel;

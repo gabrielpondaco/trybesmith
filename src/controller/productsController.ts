@@ -13,6 +13,11 @@ const productsController = {
     };
     return res.status(201).json(newProduct);
   },
+
+  async getAll(req: Request, res:Response, _next: NextFunction) {
+    const productsList = await productsService.getAll();
+    return res.status(200).json(productsList);
+  },
 };
 
 export default productsController;
