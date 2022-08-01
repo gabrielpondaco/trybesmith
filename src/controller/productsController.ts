@@ -1,10 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-// import { Products } from '../interfaces';
 import productsService from '../services/productsService';
 
 const productsController = {
   async add(req: Request, res:Response, _next: NextFunction) {
-    // const product = req.body as Products;
     const product = await productsService.validateBody(req.body);
     const id = await productsService.add(product);
     const newProduct = {

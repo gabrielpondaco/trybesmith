@@ -12,7 +12,8 @@ const errorMiddleware = (
   _next: NextFunction,
 ) => {
   let status = errors[err.name];
-  if (err.message.includes('length') || err.message.includes('must')) {
+  const { message } = err;
+  if (message.includes('length') || message.includes('must')) {
     status = 422;
   }
   if (!status) return res.sendStatus(500);
