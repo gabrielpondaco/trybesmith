@@ -9,3 +9,9 @@ export interface Users {
   level: number,
   password: string
 }
+
+export interface Orders {
+  id: number,
+  userId: number,
+  productsIds: number[]
+}
