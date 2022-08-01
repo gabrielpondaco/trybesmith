@@ -1,4 +1,4 @@
-import { OkPacket } from 'mysql2';
+import { OkPacket, RowDataPacket } from 'mysql2';
 import connection from './connection';
 import { Users } from '../interfaces/index';
 
@@ -9,6 +9,13 @@ const usersModel = {
       .execute<OkPacket>(`INSERT INTO Trybesmith.Users(username, classe, level, password) 
     VALUES(?, ?, ?, ?);`, [username, classe, level, password]);
     return insertId;
+  },
+
+  async get(user: Omit<Users, 'classe' | 'level'>) {
+    const { username, password } = user;
+    const [[userExist]] = await connection.execute<RowDataPacket[]>(`SELECT * FROM Trybesmith.Users
+    WHERE username = ? AND password = ?;`, [username, password]);
+    return userExist;
   },
 };
 
