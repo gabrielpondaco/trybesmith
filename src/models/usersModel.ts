@@ -17,6 +17,13 @@ const usersModel = {
     WHERE username = ? AND password = ?;`, [username, password]);
     return userExist;
   },
+
+  async getId(user: Omit<Users, 'classe' | 'level'>) {
+    const { username, password } = user;
+    const [[userId]] = await connection.execute<RowDataPacket[]>(`SELECT id FROM Trybesmith.Users
+    WHERE username = ? AND password = ?;`, [username, password]);
+    return userId.id;
+  },
 };
 
 export default usersModel;

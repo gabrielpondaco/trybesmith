@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from 'express';
 
 const errors: Record<string, number> = {
   ValidationError: 400,
-  NotFoundError: 401,
 };
 
 const errorMiddleware = (
@@ -16,6 +15,7 @@ const errorMiddleware = (
   if (message.includes('length') || message.includes('must')) {
     status = 422;
   }
+  if (message.toLowerCase().includes('token')) status = 401;
   if (!status) return res.sendStatus(500);
   res.status(status).json({ message: err.message });
 };

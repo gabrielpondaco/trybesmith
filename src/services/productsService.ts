@@ -13,12 +13,17 @@ const productsService = {
   },
 
   async add(product: Products) {
-    const result = productsModel.add(product);
+    const result = await productsModel.add(product);
     return result;
   },
 
   async getAll() {
-    const result = productsModel.getAll();
+    const result = await productsModel.getAll();
+    return result;
+  },
+
+  async update(orderId: number, productId: number) {
+    const result = await productsModel.update(orderId, productId);
     return result;
   },
 };

@@ -15,3 +15,10 @@ export interface Orders {
   userId: number,
   productsIds: number[]
 }
+
+export interface TokenInterface {
+  data: {
+    username: string,
+    password: string,
+  }
+}

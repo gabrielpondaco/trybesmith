@@ -18,6 +18,11 @@ const usersService = {
     const result = usersModel.add(user);
     return result;
   },
+
+  async get(user: Omit<Users, 'classe' | 'level'>) {   
+    const userId = usersModel.getId(user);
+    return userId;
+  },
 };
 
 export default usersService;
